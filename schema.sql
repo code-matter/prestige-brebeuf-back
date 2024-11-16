@@ -48,3 +48,14 @@ CREATE TABLE games (
     constraint FK_VISITOR_TEAM_ID foreign key (visitor_team)
     references teams(id)
 );
+
+CREATE TABLE users (
+    id integer PRIMARY KEY AUTO_INCREMENT,
+    first_name varchar(40) NULL,
+    last_name varchar(40) NULL,
+    email varchar(100) NOT NULL,
+    encrypted_password varchar(100) NOT NULL,
+    role integer(1) default 1 NOT NULL,
+    created_at TIMESTAMP default NOW() NOT NULL,
+    updated_at TIMESTAMP default NOW() NOT NULL
+);

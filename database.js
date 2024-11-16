@@ -84,3 +84,22 @@ export const createGame = async (
   );
   return getGame(result.insertId);
 };
+
+// USERS
+export const getUsers = async () => {
+  const [rows] = await pool.query("SELECT * FROM users");
+  return rows;
+};
+
+export const getUser = async (id) => {
+  const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
+  return rows[0];
+};
+
+export const createUser = async (name) => {
+  const [result] = await pool.query(
+    `INSERT INTO users (first_name, last_name, email, encrypted_password, role) VALUES (?,?,?,?,?)`,
+    [first_name, last_name, email, encrypted_password, role]
+  );
+  return getTeam(result.insertId);
+};
