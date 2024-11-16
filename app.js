@@ -9,6 +9,8 @@ import {
   getPlayer,
   createPlayer,
   getGames,
+  getUser,
+  getUsers,
 } from "./database.js";
 
 const app = express();
@@ -27,6 +29,17 @@ app.get("/teams", async (req, res) => {
 app.get("/games", async (req, res) => {
   const games = await getGames();
   res.send(games);
+});
+
+app.get("/users", async (req, res) => {
+  const users = await getUsers();
+  res.send(users);
+});
+
+app.get("/user", async (req, res) => {
+  const { email } = req.query;
+  const user = await getUser(email);
+  res.send(user);
 });
 
 app.use((err, req, res, next) => {
